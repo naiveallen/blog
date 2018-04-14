@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="Allen&#39;s Blog">
 <meta property="og:description" content="问题：sorts arrays of Strings.   example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&amp;gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”} 我们使用选择排序算法解决该问题： Selection sorting a list of">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/naiveallen/blog/master/image/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png">
-<meta property="og:updated_time" content="2018-04-14T14:47:49.069Z">
+<meta property="og:image" content="http://yoursite.com/image/选择排序.png">
+<meta property="og:updated_time" content="2018-04-14T14:57:20.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组的递归算法(选择排序)">
 <meta name="twitter:description" content="问题：sorts arrays of Strings.   example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&amp;gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”} 我们使用选择排序算法解决该问题： Selection sorting a list of">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/naiveallen/blog/master/image/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png">
+<meta name="twitter:image" content="http://yoursite.com/image/选择排序.png">
     
 
     
@@ -150,7 +150,7 @@
 <ul>
 <li>Selection sort the remaining N-1 items ( without touching front item! ).</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/naiveallen/blog/master/image/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png" alt="选择排序"></p>
+<p><img src="/image/选择排序.png" alt="选择排序"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> size = x.length;</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(j &lt; size)&#123;  <span class="comment">//  不断在剩余元素中进行选择排序</span></span><br><span class="line">            <span class="comment">//  找到最小元素</span></span><br><span class="line">			<span class="keyword">int</span> small = j;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = j; i &lt; size; i++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(x[i].charAt(<span class="number">0</span>) &lt; x[small].charAt(<span class="number">0</span>)) &#123;</span><br><span class="line">					small = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="comment">//  交换元素</span></span><br><span class="line">			String tmp = x[j];</span><br><span class="line">			x[j] = x[small];</span><br><span class="line">			x[small] = tmp;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <p>上面我们使用了iterative的方式实现了选择排序，下面重点要学会用递归的方式实现选择排序，同时，我们也要对代码进行重构，使用不同的方法来实现不同的过程，使代码结构更清晰。</p>
 <ul>
@@ -178,7 +178,7 @@
 
 
 
-    <a data-url="http://yoursite.com/blog/2018/04/14/数组的递归算法/" data-id="cjfzi07og0006poi4vgjb4npf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/blog/2018/04/14/数组的递归算法/" data-id="cjfzi9r720006ugi435cu3nvy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -316,7 +316,7 @@
                             <a href="/blog/2018/04/14/数组的递归算法/" class="thumbnail">
     
     
-        <span style="background-image:url(https://raw.githubusercontent.com/naiveallen/blog/master/image/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.png)" alt="数组的递归算法(选择排序)" class="thumbnail-image"></span>
+        <span style="background-image:url(/image/选择排序.png)" alt="数组的递归算法(选择排序)" class="thumbnail-image"></span>
     
     
 </a>
