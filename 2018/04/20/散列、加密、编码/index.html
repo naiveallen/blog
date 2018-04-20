@@ -3,26 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>数组的递归算法(选择排序) | Allen&#39;s Blog</title>
+    <title>散列、加密、编码 | Allen&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="cs61b,递归" />
+        <meta name="keywords" content="Hash,加密" />
     
-    <meta name="description" content="问题：sorts arrays of Strings.   example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&amp;gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”} 我们使用选择排序算法解决该问题： Selection sorting a list of">
-<meta name="keywords" content="cs61b,递归">
+    <meta name="description" content="散列（又叫Hash）和加密在身份校验、敏感信息传输等应用中用途广泛。 把他们放在一起写的原因是，网上太多资料，将散列和加密的概念混为一谈，误导性极大。 由于编码/解码运算和上述二者有一定的相似之处，因此放在这里一并讲述。 注：本文中，为了表述严谨，所有的“位”代表的是字符个数之意，而bit则指代计算机数据中的基本单位比特。 1.三者的共同点它们都表述了一种映射关系，将原始数据A映射到新的数据B。">
+<meta name="keywords" content="Hash,加密">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组的递归算法(选择排序)">
-<meta property="og:url" content="http://yoursite.com/blog/2018/04/14/数组的递归算法/index.html">
+<meta property="og:title" content="散列、加密、编码">
+<meta property="og:url" content="http://yoursite.com/blog/2018/04/20/散列、加密、编码/index.html">
 <meta property="og:site_name" content="Allen&#39;s Blog">
-<meta property="og:description" content="问题：sorts arrays of Strings.   example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&amp;gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”} 我们使用选择排序算法解决该问题： Selection sorting a list of">
+<meta property="og:description" content="散列（又叫Hash）和加密在身份校验、敏感信息传输等应用中用途广泛。 把他们放在一起写的原因是，网上太多资料，将散列和加密的概念混为一谈，误导性极大。 由于编码/解码运算和上述二者有一定的相似之处，因此放在这里一并讲述。 注：本文中，为了表述严谨，所有的“位”代表的是字符个数之意，而bit则指代计算机数据中的基本单位比特。 1.三者的共同点它们都表述了一种映射关系，将原始数据A映射到新的数据B。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://lh3.googleusercontent.com/wkSiz6_ZpslIycF1wuqHd9PWOn9JMGKt-VEQW_cR2KtPgGmSTJSg72tblK0-jr9VS7FLW1fdRI9kESeh8inK=w1366-h662">
-<meta property="og:updated_time" content="2018-04-14T15:08:23.738Z">
+<meta property="og:updated_time" content="2018-04-20T13:29:18.112Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组的递归算法(选择排序)">
-<meta name="twitter:description" content="问题：sorts arrays of Strings.   example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&amp;gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”} 我们使用选择排序算法解决该问题： Selection sorting a list of">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/wkSiz6_ZpslIycF1wuqHd9PWOn9JMGKt-VEQW_cR2KtPgGmSTJSg72tblK0-jr9VS7FLW1fdRI9kESeh8inK=w1366-h662">
+<meta name="twitter:title" content="散列、加密、编码">
+<meta name="twitter:description" content="散列（又叫Hash）和加密在身份校验、敏感信息传输等应用中用途广泛。 把他们放在一起写的原因是，网上太多资料，将散列和加密的概念混为一谈，误导性极大。 由于编码/解码运算和上述二者有一定的相似之处，因此放在这里一并讲述。 注：本文中，为了表述严谨，所有的“位”代表的是字符个数之意，而bit则指代计算机数据中的基本单位比特。 1.三者的共同点它们都表述了一种映射关系，将原始数据A映射到新的数据B。">
     
 
     
@@ -105,14 +103,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-数组的递归算法" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-散列、加密、编码" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        数组的递归算法(选择排序)
+        散列、加密、编码
         </h1>
     
 
@@ -122,55 +120,49 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/blog/2018/04/14/数组的递归算法/" class="article-date">
-            <time datetime="2018-04-14T13:24:03.000Z" itemprop="datePublished">2018-04-14</time>
+        <a href="/blog/2018/04/20/散列、加密、编码/" class="article-date">
+            <time datetime="2018-04-20T13:21:23.000Z" itemprop="datePublished">2018-04-20</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>, <a class="tag-link" href="/blog/tags/递归/">递归</a>
+        <a class="tag-link" href="/blog/tags/Hash/">Hash</a>, <a class="tag-link" href="/blog/tags/加密/">加密</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p><strong>sorts arrays of Strings.</strong>  </p>
-<h6 id="example"><a href="#example" class="headerlink" title="example:"></a>example:</h6><p>x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”}</p>
-<p>我们使用选择排序算法解决该问题：</p>
-<p><strong>Selection sorting a list of N items:</strong></p>
-<ul>
-<li>Find the smallest item.</li>
-</ul>
-<ul>
-<li>Move it to the front.</li>
-</ul>
-<ul>
-<li>Selection sort the remaining N-1 items ( without touching front item! ).</li>
-</ul>
-<p><img src="https://lh3.googleusercontent.com/wkSiz6_ZpslIycF1wuqHd9PWOn9JMGKt-VEQW_cR2KtPgGmSTJSg72tblK0-jr9VS7FLW1fdRI9kESeh8inK=w1366-h662" alt="选择排序"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> size = x.length;</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(j &lt; size)&#123;  <span class="comment">//  不断在剩余元素中进行选择排序</span></span><br><span class="line">            <span class="comment">//  找到最小元素</span></span><br><span class="line">			<span class="keyword">int</span> small = j;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = j; i &lt; size; i++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(x[i].charAt(<span class="number">0</span>) &lt; x[small].charAt(<span class="number">0</span>)) &#123;</span><br><span class="line">					small = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="comment">//  交换元素</span></span><br><span class="line">			String tmp = x[j];</span><br><span class="line">			x[j] = x[small];</span><br><span class="line">			x[small] = tmp;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>上面我们使用了iterative的方式实现了选择排序，下面重点要学会用递归的方式实现选择排序，同时，我们也要对代码进行重构，使用不同的方法来实现不同的过程，使代码结构更清晰。</p>
-<ul>
-<li><h5 id="找到最小元素（在剩余数组中找）："><a href="#找到最小元素（在剩余数组中找）：" class="headerlink" title="找到最小元素（在剩余数组中找）："></a>找到最小元素（在剩余数组中找）：</h5></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findSmallst</span><span class="params">(String[] x, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> smallIndex = start;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = smallIndex; i &lt; x.length; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(x[i].charAt(<span class="number">0</span>) &lt; x[smallIndex].charAt(<span class="number">0</span>))&#123;</span><br><span class="line">				smallIndex = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> smallIndex;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h5 id="交换元素："><a href="#交换元素：" class="headerlink" title="交换元素："></a>交换元素：</h5></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(String[] x, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">		String temp = x[a];</span><br><span class="line">		x[a] = x[b];</span><br><span class="line">		x[b] = temp;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h5 id="递归调用sort-："><a href="#递归调用sort-：" class="headerlink" title="递归调用sort()："></a>递归调用sort()：</h5></li>
-</ul>
-<p>此时遇到一个问题，sort()的声明为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x)</span></span></span><br></pre></td></tr></table></figure>
-<p>但是Java中不支持访问数组中段的地址，那么如何在不改变sort()声明的情况下，递归调用sort()呢？ 此时，我们可以引入一个helper方法，重载sort()方法，添加形参变量start。如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(start == x.length)&#123;   <span class="comment">// base case</span></span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> smallIndex = findSmallst(x, start); <span class="comment">// 找最小元素</span></span><br><span class="line">		swap(x, start, smallIndex);  <span class="comment">// 交换元素</span></span><br><span class="line">		sort(x, start + <span class="number">1</span>);  <span class="comment">// 对剩余数组，递归调用sort</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>这个helper方法可以让我们添加我们需要的形参进去，完成递归调用。</p>
-<p>完整程序如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sort</span> </span>&#123;</span><br><span class="line">	<span class="comment">/** Sorts strings destructively. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x)</span> </span>&#123;</span><br><span class="line">		sort(x, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(String[] x, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(start == x.length)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> smallIndex = findSmallst(x, start);</span><br><span class="line">		swap(x, start, smallIndex);</span><br><span class="line">		sort(x, start + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findSmallst</span><span class="params">(String[] x, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> smallIndex = start;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = smallIndex; i &lt; x.length; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(x[i].charAt(<span class="number">0</span>) &lt; x[smallIndex].charAt(<span class="number">0</span>))&#123;</span><br><span class="line">				smallIndex = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> smallIndex;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(String[] x, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">		String temp = x[a];</span><br><span class="line">		x[a] = x[b];</span><br><span class="line">		x[b] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>散列（又叫Hash）和加密在身份校验、敏感信息传输等应用中用途广泛。</p>
+<p>把他们放在一起写的原因是，网上太多资料，将散列和加密的概念混为一谈，误导性极大。</p>
+<p>由于编码/解码运算和上述二者有一定的相似之处，因此放在这里一并讲述。</p>
+<p>注：本文中，为了表述严谨，所有的“位”代表的是字符个数之意，而bit则指代计算机数据中的基本单位比特。</p>
+<h2 id="1-三者的共同点"><a href="#1-三者的共同点" class="headerlink" title="1.三者的共同点"></a>1.三者的共同点</h2><p>它们都表述了一种映射关系，将原始数据A映射到新的数据B。</p>
+<p>在散列运算中，B一般称之为摘要，英文为digest. 其代表算法有MD5，SHA1， SHA256等。从A -&gt; B的运算，称之为散列、哈希；从B -&gt; A的运算（严格意义上来说，它不算一种运算）是不存在的，当然可以通过一些其他的手段比如查表法来实现，这个在下文中会谈到。</p>
+<p>在加密运算中，A一般称之为明文或原文，B一般称之为密文。A-&gt;B的运算，称为加密；反之，即为解密。</p>
+<p>而在编码中，A-&gt;B的运算称为编码，反之为解码。</p>
+<h2 id="2-三者的区别"><a href="#2-三者的区别" class="headerlink" title="2.三者的区别"></a>2.三者的区别</h2><h3 id="散列"><a href="#散列" class="headerlink" title="散列"></a>散列</h3><p>在散列运算中，是将一个较长的数据A，运算成为一个较短的数据B，如MD5的128bits，SHA1的160bits。</p>
+<p>以字符a举例，它的MD5值是0cc175b9c0f1b6a831c399e269772661。一共32个字节，每个字节占用8bit，为什么说MD5是128bit呢？原因在于这是十六进制表示，每个字符的范围从0-9，a-f，每一位的可能性只有十六种，对应原始二进制的4bit，因此是32 x 4 = 128bit。</p>
+<p>以MD5为例，谈谈它的几个重要特点。</p>
+<p><strong>不可逆</strong>。即无法找到一个算法，从B逆推出A。<br>A的微小改变，会引起B的显著不同。举个例子，动手计算下字符A的MD5值为0cc175b9c0f1b6a831c399e269772661，B的MD5值为92eb5ffee6ae2fec3ad71c777531578f，相差巨大。<br>必然存在多个数据有相同的MD5值。从一个接近无限的元素集合映射到一个有限的元素集合，必然有多个元素A被映射到相同的元素B。<br>基于以上三点，MD5的一个重要应用就是，证明数据在传输过程中有没有受损，或是被篡改。</p>
+<p>如在网络上下载一些较大的文件如系统镜像时，下载站通常会提供MD5校验值，下载完成后对文件计算MD5，与网站提供的值比对，即可知道文件下载的是不是正确的，或是有没有损坏。</p>
+<p>又如网站登录时，服务端明文保存用户名密码是一件极为不安全的事情，因此在过去很长的一段时间里，网站都是保存用户密码的MD5值。用户登录时，js会计算并提交密码的MD5值到服务端作比对，如果一致，则认为登录成功。</p>
+<p>上述做法看上去没什么问题。由于MD5不能逆推出原文，因此，暴力穷举成为了唯一的办法。所谓的暴力穷举，指的是计算一定范围内字符串的MD5值，并建立反向映射关系。比如我计算出“123456”的MD5值是E10ADC3949BA59ABBE56E057F20F883E，我把它存在一张表里，key是E10ADC3949BA59ABBE56E057F20F883E，value是“123456”。再遇到同样的MD5值，就知道其原文是“123456”。因此，随着我计算范围的扩大，这个表会越来越大，覆盖的原文的面积也会越来越广。这样的MD5-原文的反向映射表，通常称为彩虹表。因此，为什么再三强调密码要够复杂，弱密码的MD5早已存在于彩虹表里，被查表破解是分分钟的事情。实际上，查表破解一直以来就是一个经典的破解办法，其实质，就是穷举。</p>
+<p><strong>查表，是从MD5“逆推出”原文的唯一办法。</strong><br>针对暴力查表破解，人们又想出了一个新的解决方法，即加盐。所谓加盐，即在原始的密码后加上“盐”，并且，每个用户的盐不同。这个盐是保存在服务端的。登录时，先从服务端获取该用户的盐值，并加到用户的密码字符串后，然后再计算MD5值提交验证。由于每个用户的盐不一样，所以，即使用户用了相同的密码，其MD5都是不一样的，因为加盐后的原文不一样了。加盐可以说是现今比较安全的一种做法，毕竟Hacker不可能针对每个用户的不同的盐值去单独建立一张彩虹表，成本太高，收益太小。</p>
+<p>最后谈谈MD5碰撞。所谓的MD5碰撞算法，指的是，在已知原文A和MD5值B的情况下，通过该碰撞算法，在有限的时间里，构造出一个A‘，拥有相同的MD5值B。</p>
+<p>该算法的潜在应用，更多的在于伪造、篡改信息。比如我今天发出一封邮件，邮件内容是A：“往Jack账户上转帐10000元。”，并把该邮件的MD5值通过另外一种方式发给了收件人。那么通过该碰撞算法，我们在截获该邮件后，通过MD5碰撞，构造出邮件A‘：“往John账户上转帐10000元。”，假设二者的MD5相同，收件人收到邮件并比对MD5后，确认邮件无误，但是却将钱转给了别人。</p>
+<p>看起来很危险，但实际操作起来难度要大的多。因为通常情况下，A和A‘是大相径庭的两个数据，相似度极低，可能A有10个字节，A’却有上百MB；即便能让它们在特定格式下，可见内容一样，但大小差异如此之大，收件人多半会起疑心。</p>
+<p>因此，针对所谓MD5不安全、被破解的“大新闻”，还是不要像某些媒体一样，“见得风是得雨”。</p>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><p>加密的过程，同样通过某种算法，将原文A变换成不可读的密文B。与散列操作不同的是，这个运算是可逆的，存在一种解密算法，将密文变换回可读的原文A。</p>
+<p>比如，我现在可以自定义一个加密算法，对原始的数据（以字节为单位）每个字节循环右移四位。解密的方式很简单，密文每个字节循环左移四位。在没有人知道我这种加密/解密算法之前，信息传输都是安全的。实际操作中，它很容易被破解。比如要利用它传送大批量的文本信息，那么根据英文中出现次数最多的字母是E这个统计规律，很容易就知道E对应的密文，进而破解。</p>
+<p>所以，密码学的一个重要原理就是：</p>
+<p>加密的安全性，不能依赖于加密算法本身的保密性。也就是说，即使公开你的算法，别人仍然破解不了你的数据，或者破解的成本远远高于收益。<br>举个例子，https中的不对称加密方式，加密/解密的算法完全公开；参与通信的每一个成员，均拥有一个密钥对，分为公钥和私钥。公钥为公开信息，你可以放在互联网上随意下载；私钥为隐私信息，必须妥善保管。发送方利用接收方的公钥加密信息，接收方在接收到信息以后利用自己的私钥进行解密。这也就确保了，只有你的接收方，知道通信的内容，别人没有私钥是无法解密的。整个通信过程的安全性由以下几点保证：</p>
+<p>加密不可逆。即密文无法利用公开信息（公钥等）逆推出原文。<br>公钥无法通过某种运算获得私钥。<br>这种不对称加密还可以应用在数字签名中。举例，一次HTTPS POST请求中，发送方对整个HTTPS request body计算出一个摘要，并用自己的私钥对其加密，附在request header里。接收方对request body利用同样的算法计算出摘要A，再将request header里的加密摘要用发送方的公钥解密，得到摘要B，对比A和B是否一致，即可知道传输的消息是否被篡改。</p>
+<p>当然，以上所有安全的前提，都是建立在私钥本身的安全性上的。如果你的私钥被人拿走了，那谁都救不了你。</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>编码/解码操作与加密/解密操作非常类似，主要的区别在于，编解码的算法完全公开透明，只是为了方便信息传输而更换一种表现形式，并不具有任何隐私性。</p>
+<p>比如BASE64，就应该称为编码，而不应称为加密。</p>
 
         </div>
         <footer class="article-footer">
@@ -178,7 +170,7 @@
 
 
 
-    <a data-url="http://yoursite.com/blog/2018/04/14/数组的递归算法/" data-id="cjg7zrn24000evki48sr8rmoj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/blog/2018/04/20/散列、加密、编码/" data-id="cjg7zrn22000dvki4827hpmtj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -291,20 +283,10 @@
         
 <nav id="article-nav">
     
-        <a href="/blog/2018/04/20/散列、加密、编码/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            散列、加密、编码
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/blog/2018/04/10/java引用类型、关键字new及intList实现/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/blog/2018/04/14/数组的递归算法/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Java引用类型、关键字new及intList实现</p>
+        <p class="article-nav-title">数组的递归算法(选择排序)</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -497,7 +479,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/blog/2018/04/14/数组的递归算法/';
+    var disqus_url = 'http://yoursite.com/blog/2018/04/20/散列、加密、编码/';
     
     (function() {
     var dsq = document.createElement('script');
