@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mysql学习笔记 | Allen&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="Mysql" />
+    
+    <meta name="description" content="查看数据库：show databases;   创建数据库：create database database_name;  使用数据库：use database_name;  删除数据库：drop database database_name;  注意：数据库无法改名！  查看数据库中的表：show tables;  创建一个表：create table class(stu int,name v">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql学习笔记">
+<meta property="og:url" content="http://yoursite.com/blog/2018/04/22/Mysql学习笔记/index.html">
+<meta property="og:site_name" content="Allen&#39;s Blog">
+<meta property="og:description" content="查看数据库：show databases;   创建数据库：create database database_name;  使用数据库：use database_name;  删除数据库：drop database database_name;  注意：数据库无法改名！  查看数据库中的表：show tables;  创建一个表：create table class(stu int,name v">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-22T15:20:41.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql学习笔记">
+<meta name="twitter:description" content="查看数据库：show databases;   创建数据库：create database database_name;  使用数据库：use database_name;  删除数据库：drop database database_name;  注意：数据库无法改名！  查看数据库中的表：show tables;  创建一个表：create table class(stu int,name v">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/blog/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/blog/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <script src="/blog/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/blog/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/blog/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/blog/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">to be simple, to be naive</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/blog/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/随笔/">随笔</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/blog/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://yoursite.com/blog"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/blog/categories/Java/">Java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Mysql学习笔记" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Mysql学习笔记
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/blog/2018/04/22/Mysql学习笔记/" class="article-date">
+            <time datetime="2018-04-22T15:08:09.000Z" itemprop="datePublished">2018-04-22</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/Mysql/">Mysql</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <ol>
+<li><p>查看数据库：<br>show databases; </p>
+</li>
+<li><p>创建数据库：<br>create database database_name;</p>
+</li>
+<li><p>使用数据库：<br>use database_name;</p>
+</li>
+<li><p>删除数据库：<br>drop database database_name;</p>
+</li>
+<li><p>注意：数据库无法改名！</p>
+</li>
+<li><p>查看数据库中的表：<br>show tables;</p>
+</li>
+<li><p>创建一个表：<br>create table class(<br>stu int,<br>name varchar(20),<br>age int,<br>area varchar(20)<br>);</p>
+</li>
+<li><p>重命名表：<br>rename table old_name to new_name;</p>
+</li>
+<li><p>删除表：<br>drop table table_name;</p>
+</li>
+<li><p>描述表结构：<br>desc table_name;</p>
+</li>
+</ol>
+<p>修改表中的列：<br>alter table table_name add column_name datatype (添加一列)<br>alter table table_name drop column column_name (删除一列)<br>alter table table_name alter column column_name datatype (修改一列)</p>
+<ol>
+<li><p>在表中新增一行数据：<br>insert into msg<br>(id, title, name, content)<br>values<br>(1, ‘first msg’, ‘yuan’, ‘Nice to meet you!’);</p>
+</li>
+<li><p>在表中新增多行数据：<br>insert into msg<br>(id, title, name, content)<br>values<br>(1, ‘first msg’, ‘yuan’, ‘Nice to meet you!’),<br>(2, ‘second msg’, ‘chang’, ‘Hello!’);</p>
+</li>
+</ol>
+<ol>
+<li><p>向数据库服务器声明字符集：<br>set names gbk;</p>
+</li>
+<li><p>修改表中的数据：<br>update msg<br>set id = 2, content = ‘哈哈哈哈哈哈’<br>where name = ‘张三’;</p>
+</li>
+<li><p>删除数据：<br>delete from msg<br>where id = 2;</p>
+</li>
+<li><p>查找数据： (select 控制查找的列，where 控制查找的行)<br>select <em> from table_name; (查找所有数据)<br>select id, title from table_name; (查找某几列)<br>select </em> from table_name where id &gt; 2;(查找某几行)</p>
+</li>
+<li><p>数值型：<br>整形：tinyint(1字节), smallint(2字节), mediumint(3字节), int(4字节), bigint(8字节)<br>小数型：浮点型，定点型<br>float(M,D) M: 总位数 D: 小数位数<br>例：float(6, 2)  -9999.99 – 9999.99  如加上unsigned 表示0.00-9999.99<br>decimal(M, D) decimal更精确</p>
+<p>create table students(</p>
+<p>id smallint primary key auto_increment,<br>name varchar(10),<br>age tinyint        </p>
+<p>) charset utf8;</p>
+<p>​</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insert into students</span><br><span class="line">(name, age)</span><br><span class="line">values</span><br><span class="line">(&apos;Peter&apos;, 25), (&apos;rong&apos;, 24), (&apos;yuan&apos;, 25), (&apos;Jim&apos;, 65);</span><br></pre></td></tr></table></figure>
+<p>alter table students add score2 tinyint(5) zerofill;</p>
+<p>insert into students (name, age, score2) values (‘love’, 12, 25);</p>
+<p>整形列属性：<br>tinyint(m) unsigned zerofill<br>unsigned: 无符号<br>m: 在有zerofill时才有意义<br>zerofill: 零填充，数值保持固定的宽度，宽度不够用0填充，填充至m的宽度。00001, 00005, 00058 …<br>如果某列zerofill，该列默认为unsigned。</p>
+<p>列可以声明默认值<br>not null default 0  (不接受null值，默认为0) </p>
+<p>alter table students add score3 tinyint not null default 0;</p>
+<p>create table goods(<br>    name varchar(10) not null default ‘’,<br>    price float(6, 2) not null default 0.00<br>) charset utf8;</p>
+<p>insert into goods<br>(name, bigprice, decprice) values<br>(‘bike’, 1234567.23, 1234567.23);</p>
+<p>alter table goods add<br>decprice decimal(9, 2) not null default 0.0;</p>
+<ol>
+<li>字符型：<br>char 定长。 char(M) M代表宽度，即可容纳的字符数<br>varchar 变长。varchar(M) M代表宽度，即可容纳的字符数<br>区别：char 若存的小于M个字符，实占空间M个字符。 利用率 &lt;= 100%<br>   varchar 若存的小于M个字符，为N，N &lt; M, 实占空间为 N字符 + (1~2) 字节。利用率 &lt; 100%<br>char 若不足M个字符，内部用空格补齐，若字符末尾有空格，取出时会丢失空格<br>varchar 存入时是什么，取出时就是什么。空格不会丢失 </li>
+</ol>
+<p>create table people(<br>    name char(8) not null default ‘’,<br>    nickname varchar(10) not null default ‘’<br>) charset utf8;</p>
+<p>insert into people<br>(name, nickname) values<br>(‘默罕默德买买提’, ‘Allen’);</p>
+<ol>
+<li>日期时间类型：<br>年 == year<br>年-月-日 == date<br>09:00:00 == time<br>年-月-日 hh:mm:ss == datetime</li>
+</ol>
+<p>year: 一个字节 表示 ‘1901’ - ‘2155’ [‘0000’，表示错误时]<br>如果输入两位数： “00 - 69” 代表 ‘2000’ - ‘2069’ ，”70 - 99” 代表 ‘1970’ - ‘1999’</p>
+<p>date: 典型格式： ‘1992-02-22’<br>存储范围：’1000-01-01’ - ‘9999-12-31’</p>
+<p>time: 典型格式： hh:mm:ss<br>表示范围： ‘-838:59:59’ - ‘838:59:59’</p>
+<p>datatime: 典型格式： ‘1989-05-06 13:25:18’<br>表示范围： ‘1000-01-01 00:00:00’ - ‘9999-12-31 23:59:59’</p>
+<p>一般用时间戳来表示存储时间<br>是 1970-01-01 00:00:00 到当前的秒数  计算方便 用 int 存储 </p>
+<p>create table history(<br>    event varchar(10) not null default ‘’,<br>    year year(4)<br>);</p>
+<p>insert into history<br>values (‘pink1’, ‘2011’, ‘2011-05-08’, ‘23:13:56’), (‘black’, ‘2018’, ‘2018-6-6’, ‘11:10:01’);</p>
+<p>alter table history add<br>time time;</p>
+<ol>
+<li>枚举型：        (不符合关系型数据的设计理念，不推荐用)<br>enum  set 集合型    </li>
+</ol>
+<p>create table teacher(<br>    name varchar(10),<br>    gender enum(‘男’, ‘女’)   # 给出所有选项<br>)</p>
+<p>木瓜商城表结构：</p>
+<p>create database mugua charset utf8;</p>
+<p>create table goods(<br>    goods_id int primary key auto_increment,<br>    cat_id smallint not null default 0,<br>    goods_sn char(15) not null default ‘’,<br>    goods_name varchar(30) not null default ‘’,<br>    click_count mediumint unsigned not null default 0,<br>    brand_id smallint not null default 0,<br>    goods_number smallint not null default 0,<br>    market_price decimal(7, 2) not null default 0.00,<br>    shop_price decimal(7, 2) not null default 0.00,<br>    add_time int unsigned not null default 0<br>)charset utf8;</p>
+<p>create table category(<br>    cat_id smallint primary key auto_increment,<br>    cat_name varchar(30) not null default ‘’,<br>    parent_id smallint not null default 0<br>)charset utf8;</p>
+<p>create table brand(<br>    brand_id smallint primary key auto_increment,<br>    brand_name varchar(30) not null default ‘’<br>)charset utf8;</p>
+<ol>
+<li>查询：<br>五种子句： 五个字句有顺序要求<br>where 条件查询<br>group by 分组<br>having 筛选<br>order by 排序<br>limit 限制结果条数</li>
+</ol>
+<p>where : </p>
+<p>运算表达式 = &lt; &gt; != &gt;= &lt;= in between<br>in 在某集合内  between 在某范围内<br>in(v1, v2, … vn) 等于v1 … vn 任一个均可<br>between v1 and v2 ，表示在值1和值2之间</p>
+<p>例：查询第3个栏目或第4个栏目中的商品<br>SELECT goods_id, cat_id, goods_name, shop_price FROM goods WHERE cat_id IN (3, 4);<br>查询商品价格在1000-2000之间的商品：<br>SELECT goods_id, cat_id, goods_name, shop_price FROM goods WHERE shop_price BETWEEN 1000 AND 2000;</p>
+<p>not 或 ！ 逻辑非<br>or 或 ||  逻辑或<br>and 或 &amp;&amp; 逻辑与</p>
+<p>模糊查询：<br>like<br>% - - - - 通配任意字符<br>_ - - - - 通配单个字符</p>
+<p>取出所有以’诺基亚’开头的商品：<br>SELECT goods_id, cat_id, goods_name, shop_price FROM goods WHERE goods_name LIKE ‘诺基亚%’;<br>取出’诺基亚XXXX’名称的商品：(诺基亚原装耳机, 诺基亚6320)<br>SELECT goods_id, cat_id, goods_name, shop_price FROM goods WHERE goods_name LIKE ‘诺基亚<em>__</em>‘;</p>
+<p>group by :</p>
+<p>统计函数: max(), min(), avg(), sum(), count() 求总行数</p>
+<p>SELECT goods_id, goods_name, MAX(shop_price) FROM goods;<br>该语句有误 ：会把第一行的商品id，商品名，以及表中最大的价格返回，无意义</p>
+<p>5个聚合函数与group综合运用</p>
+<p>#查询每个栏目下最贵商品价格<br>SELECT cat_id, MAX(shop_price) FROM goods GROUP BY cat_id;</p>
+<p>#查询每个栏目下商品平均价格<br>SELECT cat_id, AVG(shop_price) FROM goods GROUP BY cat_id;</p>
+<p>#查询每个栏目下商品总量<br>SELECT cat_id, SUM(goods_number) FROM goods GROUP BY cat_id;</p>
+<p>#查询每个栏目下商品种类<br>SELECT cat_id, COUNT(*) FROM goods GROUP BY cat_id;</p>
+<p>#查询每个栏目下积压的货款<br>SELECT cat_id, SUM(goods_number * shop_price) FROM goods GROUP BY cat_id;</p>
+<p>可以给列或计算结果取别名，用 as<br>SELECT cat_id, SUM(goods_number * shop_price) AS amount FROM goods GROUP BY cat_id;</p>
+<p>having :</p>
+<p>对查询出的结果再次查询，使用 having，where 仅能对原表中的列起作用<br>having 是对查出的结果进行筛选</p>
+<p>#查询本店商品的价格比市场价低多少，并将低200元以上的商品列出<br>SELECT goods_id, goods_name, market_price - shop_price AS save FROM goods<br>WHERE market_price - shop_price &gt; 200;</p>
+<p>SELECT goods_id, goods_name, market_price - shop_price AS save FROM goods HAVING save &gt; 200;</p>
+<p>#查询第三个栏目下的比市场价低200元以上的商品<br>SELECT goods_id, goods_name, cat_id, market_price - shop_price AS save FROM goods<br>WHERE cat_id = 3 HAVING save &gt; 200; </p>
+<p>#查询积压货款超过20000元的栏目<br>SELECT cat_id, SUM(goods_number * shop_price) AS amount FROM goods GROUP BY cat_id HAVING amount &gt; 20000;</p>
+<p>– 题目：<br>– name         subject       score<br>– 张三          语文           90<br>– 张三          数学           60<br>– 张三          英语           50<br>– 李四          语文           55<br>– 李四          数学           45<br>– 王五          语文           55<br>– 求挂科两门及两门以上同学的平均分。 </p>
+<p>select name, AVG(score)，sum(score &lt; 60) as amount from stu group by name having amount &gt;= 2;<br>难点是怎么统计挂科两门，这里使用 sum， 不能用 count，因为count计算的是所有行的行数。<br>score &lt; 60 为布尔表达式，mysql中假为0，真为1，所以 sum(score &lt; 60) ，计算的是每个同学挂科的数目。</p>
+<p>order by : </p>
+<p>按一个或多个字段对查询结果进行排序，默认升序排列</p>
+<p>SELECT goods_id, goods_name, shop_price FROM goods WHERE cat_id = 3 ORDER BY shop_price;</p>
+<p>SELECT goods_id, goods_name, shop_price FROM goods WHERE cat_id = 3 ORDER BY shop_price DESC;<br>加 DESC 声明按降序排列</p>
+<p>SELECT goods_id, goods_name, shop_price FROM goods WHERE cat_id != 3 ORDER BY cat_id ;</p>
+<p>#按栏目由高到低，商品价格由高到低排序<br>SELECT goods_id, goods_name, shop_price, cat_id FROM goods ORDER BY cat_id DESC, shop_price DESC;</p>
+<p>limit : </p>
+<p>limit 在语句的最后，起到限制条目的作用<br>limit [offset], N   offset：可选，偏移量(即跳过几条数据)，若不写，取0     N：取出条目</p>
+<p>#取出价格排名由高到低第4-第6的商品<br>SELECT goods_id, goods_name, shop_price, cat_id FROM goods ORDER BY shop_price DESC LIMIT 3, 3;</p>
+<p>#思考题：</p>
+<p>#查询每个栏目下最贵的商品<br>SELECT * FROM<br>(SELECT cat_id, goods_id, goods_name, shop_price FROM goods ORDER BY cat_id, shop_price DESC) AS tmp<br>GROUP BY cat_id;<br>子查询 将查询到的结果当做一个表，继续在结果表中查询。(注意：派生表必须 as 别名)</p>
+<ol>
+<li>子查询</li>
+</ol>
+<p>where 型子查询： 把内层查询的结果作为外层查询的比较条件<br>from 型子查询： 把内层查询结果当成临时表，供外层sql再次查询，注意加 AS 临时表名<br>exists 型子查询： 把外层的查询结果，拿到内层，看内层的查询结果是否成立 </p>
+<p>#查询每个栏目下最贵的商品<br>where 型子查询：<br>SELECT cat_id, goods_id, goods_name, shop_price FROM goods<br>WHERE shop_price IN (SELECT MAX(shop_price) FROM goods GROUP BY cat_id); </p>
+<p>from 型子查询：<br>SELECT * FROM<br>(SELECT cat_id, goods_id, goods_name, shop_price FROM goods ORDER BY cat_id, shop_price DESC) AS tmp<br>GROUP BY cat_id; </p>
+<p>– 题目：<br>– name         subject       score<br>– 张三          语文           90<br>– 张三          数学           60<br>– 张三          英语           50<br>– 李四          语文           55<br>– 李四          数学           45<br>– 王五          语文           55<br>– 求挂科两门及两门以上同学的平均分。</p>
+<p>SELECT name, AVG(score) FROM stu WHERE name in<br>(<br>    SELECT name FROM<br>    (<br>        (SELECT name, count(*) as amount FROM stu WHERE score &lt; 60 GROUP BY name HAVING amount &gt;= 2) as tmp<br>    )<br>)GROUP BY name; </p>
+<p>#典型题：查询所有有商品的栏目<br>exists 型子查询：<br>SELECT cat_id, cat_name FROM category WHERE EXISTS<br>(SELECT * FROM goods WHERE goods.cat_id = category.cat_id);<br>查询出所有的cat_id, 再看能否查出商品，商品的cat_id = category.cat_id 。能查出商品，就返回该cat_id。</p>
+<ol>
+<li>union 联合：</li>
+</ol>
+<p>把两次或多次查询结果合并起来</p>
+<p>SELECT goods_id, goods_name, shop_price FROM goods WHERE shop_price &gt; 5000 union<br>SELECT goods_id, goods_name, shop_price FROM goods WHERE shop_price &lt; 20;</p>
+<p>要求：两次查询的列数一致<br>推荐：查询的每一列的列类型一样<br>可以来自多张表，每一次sql语句取出的列名可以不一致，最终，以第一个sql的列名为准<br>如果不同的语句中取出的行完全相同，此时，最终的表中这两行会合并成一行。（去重复）<br>如果不去重复 使用 union all<br>如果字句中有 order by ，limit ，须加（）。 order by 需配合 limit 使用才有效果，如果不配合，<br>不执行 order by 。</p>
+<h1 id="练习："><a href="#练习：" class="headerlink" title="练习："></a>练习：</h1><p>– ta<br>– id     num<br>– a       5<br>– b       10<br>– c       15<br>– d       20<br>– tb<br>– id     num<br>– b       5<br>– c       15<br>– d       25<br>– e       99<br>– 写一条sql语句，使得结果为：<br>– a  5<br>– b  15<br>– c  30<br>– d  45<br>– e  99</p>
+<p>SELECT id, SUM(num) FROM<br>(SELECT <em> FROM ta UNION ALL SELECT </em> FROM tb) AS tmp GROUP BY id; </p>
+<ol>
+<li>连接查询</li>
+</ol>
+<p>表A有9行，表B有10行，两表相乘有9 * 10行。</p>
+<p>左连接:<br>SELECT 列1，列2，… FROM<br>表1 LEFT JOIN 表2<br>ON 表1.列n = 表2.列n  </p>
+<p>右连接:<br>SELECT 列1，列2，… FROM<br>表1 RIGHT JOIN 表2<br>ON 表1.列n = 表2.列n</p>
+<p>内连接:<br>SELECT 列1，列2，… FROM<br>表1 INNER JOIN 表2<br>ON 表1.列n = 表2.列n</p>
+<p>#取出商品名称，所属类别，商品价格<br>新表：连上两张表，再加上连接条件： goods left join category on goods.cat_id = category.cat_id<br>SELECT goods_name, cat_name, shop_price FROM<br>goods left join category on goods.cat_id = category.cat_id;</p>
+<p>左连接：以左表为准，去右表寻找匹配数据，找不到匹配用 NULL 补齐<br>右连接：A LEFT JOIN B  ==  B RIGHT JOIN A    完全等价，故用左连接就完事了</p>
+<p>内连接：查询左右表都有的数据，即不要左右连接中 NULL 的数据<br>内连接是左右连接的交集</p>
+<h1 id="练习：-取出商品名称，品牌名称，所属类别，商品价格。—-三表联查"><a href="#练习：-取出商品名称，品牌名称，所属类别，商品价格。—-三表联查" class="headerlink" title="练习： 取出商品名称，品牌名称，所属类别，商品价格。—-三表联查"></a>练习： 取出商品名称，品牌名称，所属类别，商品价格。—-三表联查</h1><p>SELECT goods_name, brand_name, cat_name, shop_price FROM<br>(goods LEFT JOIN category ON goods.<code>cat_id</code> = category.<code>cat_id</code>)<br>LEFT JOIN brand ON goods.<code>brand_id</code> = brand.<code>brand_id</code>;</p>
+<h1 id="练习2："><a href="#练习2：" class="headerlink" title="练习2："></a>练习2：</h1><p>– Matches赛程表<br>– matchID        hostTeamID       guestTeamID      matchResult    matchTime<br>– (int)             (int)             (int)         (varchar)       (date)</p>
+<p>– Team参赛队伍表<br>– teamID                teamName<br>– (int)                 (varchar)</p>
+<p>– Match 的 hostTeamID 和 guestTeamID 和Team中的 teamID 相关联。<br>– 查出2006-06-01 - 2006-07-01 之间所有的比赛<br>– 格式： 拜仁  2 : 0  皇马  2006-06-22</p>
+<p>CREATE TABLE Matches (<br>MatchID INT,<br>hostTeamID INT,<br>guestTeamID INT,<br>matchResult VARCHAR(10),<br>matchTime DATE<br>);<br>CREATE TABLE Team (<br>teamID INT,<br>teamName VARCHAR(10)<br>);<br>INSERT INTO Matches VALUES<br>(1, 5, 2, ‘2:0’, ‘2006-06-05’),(2, 1, 3, ‘2:5’, ‘2006-01-05’),<br>(3, 2, 4, ‘4:0’, ‘2006-06-17’),(4, 3, 5, ‘2:2’, ‘2006-07-05’),(5, 5, 1, ‘1:2’, ‘2006-06-29’);<br>INSERT INTO Team VALUES<br>(1, ‘拜仁’),(2, ‘国安’),(3, ‘皇马’),(4, ‘红牛’),(5, ‘AC米兰’);</p>
+<p>SELECT hostTeam.teamName, matchResult, guestTeam.teamName, matchTime FROM<br>Matches LEFT JOIN Team AS hostTeam ON Matches.hostTeamID = hostTeam.teamID<br>LEFT JOIN Team AS guestTeam ON Matches.guestTeamID = guestTeam.teamID<br>WHERE matchTime BETWEEN ‘2006-06-01’ AND ‘2006-07-01’;</p>
+<ol>
+<li>表管理之列的增删改</li>
+</ol>
+<p>建表：<br>CREATE TABLE 表名(<br>    列名称 列类型 [列属性] [默认值]，  —–&gt; 列声明<br>    列名称 列类型 [列属性] [默认值]，<br>    列名称 列类型 [列属性] [默认值]<br>)</p>
+<p>表增加列：<br>ALTER TABLE 表名 ADD 列声明;</p>
+<p>新增的列默认在最后面，可以用 ‘after 列名’ 来声明新增的列在哪一列后面。<br>如果要放在第一列，使用 first 。如： ALTER TABLE 表名 ADD 列声明 first;</p>
+<p>表修改列：<br>ALTER TABLE 表名 CHANGE 旧列名 列声明; </p>
+<p>表删除列：<br>ALTER TABLE 表名 DROP 列名; </p>
+<ol>
+<li>视图</li>
+</ol>
+<p>如果某个查询结果出现的非常频繁，即经常把这个结果当做子查询，可以考虑将该查询结果保存成一张表</p>
+<p>视图：由查询结果形成的一张虚拟表</p>
+<p>视图的创建语法：<br>CREATE VIEW 视图名 AS SELECT 语句;</p>
+<p>视图的删除语法：<br>DROP VIEW 视图名;</p>
+<p>为什么要使用视图：<br>(1) 可以简化查询<br>(2) 可以进行权限控制<br>(3) 大数据分表时可以用到</p>
+<p>视图的修改：<br>ALTER VIEW 视图名 AS SELECT 语句;</p>
+<p>视图与表的关系：<br>视图是表的查询结果，自然表的数据改变了，影响视图的结果</p>
+<p>视图改变：<br>视图修改也会影响表，但是，视图并不是总能增删改的<br>只有当视图的数据与表的数据一一对应时，可以修改。</p>
+<ol>
+<li>字符集与校对集</li>
+</ol>
+<p>CREATE TABLE 表名(<br>    列声明<br>) charset utf8;</p>
+<p>mysql字符集设置非常灵活，可以设置服务器默认字符集，数据库默认字符集，表默认字符集，<br>列默认字符集。如果某一级没有指定字符集，继承上一级。</p>
+<p>以表声明utf8为例</p>
+<ol>
+<li>告诉服务器，我发送的数据是什么编码的。 set character_set_client gbk;</li>
+<li>告诉转换器，转换成什么编码。   set character_set_connection gbk;</li>
+<li>查询的结果用什么编码。  set character_set_results gbk;</li>
+</ol>
+<p>如果以上三句话都是同一个字符集 N ，则可以简写为 set names N </p>
+<p>出现乱码的情况：</p>
+<ol>
+<li>client 声明与事实不符</li>
+<li>results 声明与客户端页面不同</li>
+</ol>
+<p>出现丢失数据的情况：<br>connection和服务器的字符集比客户端的字符集小</p>
+<p>校对集：<br>就是排序规则<br>一个字符集可以有一个或多个排序规则。例utf8，默认使用 utf8_general_ci 规则，亦可以用二进制来排，utf_bin</p>
+<p>声明校对集：<br>CREATE TABLE 表名(<br>)charset utf8 collate utf8_bin; </p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/blog/2018/04/22/Mysql学习笔记/" data-id="cjgaymk7v0000egi42hqn3lp5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/blog/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/naiveallen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/u/2405693853" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/blog/2018/04/20/散列、加密、编码/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">散列、加密、编码</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/04/22/Mysql学习笔记/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/04/22/Mysql学习笔记/" class="title">Mysql学习笔记</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:08:09.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/04/20/散列、加密、编码/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/04/20/散列、加密、编码/" class="title">散列、加密、编码</a></p>
+                            <p class="item-date"><time datetime="2018-04-20T13:21:23.000Z" itemprop="datePublished">2018-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/04/14/数组的递归算法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://lh3.googleusercontent.com/wkSiz6_ZpslIycF1wuqHd9PWOn9JMGKt-VEQW_cR2KtPgGmSTJSg72tblK0-jr9VS7FLW1fdRI9kESeh8inK=w1366-h662)" alt="数组的递归算法(选择排序)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/04/14/数组的递归算法/" class="title">数组的递归算法(选择排序)</a></p>
+                            <p class="item-date"><time datetime="2018-04-14T13:24:03.000Z" itemprop="datePublished">2018-04-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/04/10/java引用类型、关键字new及intList实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/04/10/java引用类型、关键字new及intList实现/" class="title">Java引用类型、关键字new及intList实现</a></p>
+                            <p class="item-date"><time datetime="2018-04-10T15:39:28.000Z" itemprop="datePublished">2018-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb)" alt="搭建Shadowsocks以及安装BBR加速" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/随笔/">随笔</a></p>
+                            <p class="item-title"><a href="/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" class="title">搭建Shadowsocks以及安装BBR加速</a></p>
+                            <p class="item-date"><time datetime="2018-02-03T09:33:12.000Z" itemprop="datePublished">2018-02-03</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/blog/tags/Hash/" style="font-size: 10px;">Hash</a> <a href="/blog/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/blog/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/blog/tags/cs61b/" style="font-size: 20px;">cs61b</a> <a href="/blog/tags/github/" style="font-size: 10px;">github</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/加密/" style="font-size: 10px;">加密</a> <a href="/blog/tags/继承/" style="font-size: 10px;">继承</a> <a href="/blog/tags/递归/" style="font-size: 10px;">递归</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/blog/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Allen Yuan</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/blog/2018/04/22/Mysql学习笔记/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/blog/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/blog/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/blog/js/main.js"></script>
+
+    </div>
+</body>
+</html>
