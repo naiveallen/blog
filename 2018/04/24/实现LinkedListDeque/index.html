@@ -3,26 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>搭建Shadowsocks以及安装BBR加速 | Allen&#39;s Blog</title>
+    <title>实现LinkedListDeque | Allen&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Shadowsocks" />
+        <meta name="keywords" content="cs61b" />
     
-    <meta name="description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
-<meta name="keywords" content="Shadowsocks">
+    <meta name="description" content="Deque为双端队列，其插入和删除的操作均在两端进行。  public void addFirst(T item): Adds an item of type T to the front of the deque. public void addLast(T item): Adds an item of type T to the back of the deque. public boolea">
+<meta name="keywords" content="cs61b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建Shadowsocks以及安装BBR加速">
-<meta property="og:url" content="http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/index.html">
+<meta property="og:title" content="实现LinkedListDeque">
+<meta property="og:url" content="http://yoursite.com/blog/2018/04/24/实现LinkedListDeque/index.html">
 <meta property="og:site_name" content="Allen&#39;s Blog">
-<meta property="og:description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
+<meta property="og:description" content="Deque为双端队列，其插入和删除的操作均在两端进行。  public void addFirst(T item): Adds an item of type T to the front of the deque. public void addLast(T item): Adds an item of type T to the back of the deque. public boolea">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
-<meta property="og:updated_time" content="2018-02-03T09:44:36.405Z">
+<meta property="og:updated_time" content="2018-04-24T14:36:12.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建Shadowsocks以及安装BBR加速">
-<meta name="twitter:description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
+<meta name="twitter:title" content="实现LinkedListDeque">
+<meta name="twitter:description" content="Deque为双端队列，其插入和删除的操作均在两端进行。  public void addFirst(T item): Adds an item of type T to the front of the deque. public void addLast(T item): Adds an item of type T to the back of the deque. public boolea">
     
 
     
@@ -101,18 +99,18 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/blog/categories/随笔/">随笔</a>
+    <a class="page-title-link" href="/blog/categories/Java/">Java</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-搭建Shadowsocks以及安装BBR加速" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-实现LinkedListDeque" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        搭建Shadowsocks以及安装BBR加速
+        实现LinkedListDeque
         </h1>
     
 
@@ -122,29 +120,39 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" class="article-date">
-            <time datetime="2018-02-03T09:33:12.000Z" itemprop="datePublished">2018-02-03</time>
+        <a href="/blog/2018/04/24/实现LinkedListDeque/" class="article-date">
+            <time datetime="2018-04-24T14:35:20.000Z" itemprop="datePublished">2018-04-24</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/Shadowsocks/">Shadowsocks</a>
+        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb" alt=""></p>
-<h1 id="安装Shadowsocks"><a href="#安装Shadowsocks" class="headerlink" title="安装Shadowsocks"></a>安装Shadowsocks</h1><p>连接上VPS终端后，在终端中依次运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line"></span><br><span class="line">chmod +x shadowsocks.sh</span><br><span class="line"></span><br><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
-<p>接着按照提醒输入你的密码，端口和加密方式，加密方式选择7 - aes-256-cfb</p>
-<h1 id="安装BBR"><a href="#安装BBR" class="headerlink" title="安装BBR"></a>安装BBR</h1><p>在终端运行以下脚本:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
-<p>安装完成后，重启VPS。再次连接，在终端中输入以下命令，如果返回结果包含tcp_bbr，则安装成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+            <p>Deque为双端队列，其插入和删除的操作均在两端进行。</p>
+<ul>
+<li><code>public void addFirst(T item)</code>: Adds an item of type <code>T</code> to the front of the deque.</li>
+<li><code>public void addLast(T item)</code>: Adds an item of type <code>T</code> to the back of the deque.</li>
+<li><code>public boolean isEmpty()</code>: Returns true if deque is empty, false otherwise.</li>
+<li><code>public int size()</code>: Returns the number of items in the deque.</li>
+<li><code>public void printDeque()</code>: Prints the items in the deque from first to last, separated by a space.</li>
+<li><code>public T removeFirst()</code>: Removes and returns the item at the front of the deque. If no such item exists, returns null.</li>
+<li><code>public T removeLast()</code>: Removes and returns the item at the back of the deque. If no such item exists, returns null.</li>
+<li><code>public T get(int index)</code>: Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth. If no such item exists, returns null. Must not alter the deque!</li>
+</ul>
+<p>我们基于LinkedList来实现上面定义的方法。有两种方式来实现LinkedListDeque，分别是</p>
+<ol>
+<li>设置头结点尾节点，构成双向链表实现</li>
+<li>设置一个头结点，构成循环的双向链表来实现。</li>
+</ol>
+<p>以上两种方法实现方式均不难，使用循环链表更好一些。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListDeque2</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Item val;</span><br><span class="line">        <span class="keyword">private</span> Node previous;</span><br><span class="line">        <span class="keyword">private</span> Node next;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Node</span><span class="params">(Item val, Node previous, Node next)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.previous = previous;</span><br><span class="line">            <span class="keyword">this</span>.next = next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Node sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LinkedListDeque2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        sentinel = <span class="keyword">new</span> Node();</span><br><span class="line">        sentinel.previous = sentinel;</span><br><span class="line">        sentinel.next = sentinel;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        Node p = <span class="keyword">new</span> Node(x, sentinel, sentinel.next);</span><br><span class="line">        sentinel.next.previous = p;</span><br><span class="line">        sentinel.next = p;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Item x)</span> </span>&#123;</span><br><span class="line">        Node p = <span class="keyword">new</span> Node(x, sentinel.previous, sentinel);</span><br><span class="line">        sentinel.previous.next = p;</span><br><span class="line">        sentinel.previous = p;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDeque</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Node p = sentinel.next;</span><br><span class="line">        <span class="keyword">while</span>(p != sentinel)&#123;</span><br><span class="line">            System.out.print(p.val + <span class="string">" "</span>);</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">removeFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Item item = sentinel.next.val;</span><br><span class="line">        sentinel.next.next.previous = sentinel;</span><br><span class="line">        sentinel.next = sentinel.next.next;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">removeLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Item item = sentinel.previous.val;</span><br><span class="line">        sentinel.previous.previous.next = sentinel;</span><br><span class="line">        sentinel.previous = sentinel.previous.previous;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt;= size)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index &lt; size / <span class="number">2</span>)&#123;</span><br><span class="line">            Node p = sentinel.next;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p.val;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Node p = sentinel.previous;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--) &#123;</span><br><span class="line">                p = p.previous;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p.val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">getRecursive</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &lt; <span class="number">0</span> || index &gt;= size)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> helper(sentinel, index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Item <span class="title">helper</span><span class="params">(Node front, <span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> front.next.val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(front.next, index - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -152,7 +160,7 @@
 
 
 
-    <a data-url="http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" data-id="cjgdszg9f0009poi4n9fkck88" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/blog/2018/04/24/实现LinkedListDeque/" data-id="cjgdszg9d0006poi43px09lna" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -265,20 +273,20 @@
         
 <nav id="article-nav">
     
-        <a href="/blog/2018/04/10/java引用类型、关键字new及intList实现/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/blog/2018/04/24/实现ArrayListDeque/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Java引用类型、关键字new及intList实现
+            实现ArrayDeque
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/blog/2018/01/03/this和super的用法/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/blog/2018/04/24/翻转intlist--dummy/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">this和super的用法</p>
+        <p class="article-nav-title">翻转intlist--dummy</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -471,7 +479,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/';
+    var disqus_url = 'http://yoursite.com/blog/2018/04/24/实现LinkedListDeque/';
     
     (function() {
     var dsq = document.createElement('script');

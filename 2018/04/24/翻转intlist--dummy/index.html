@@ -3,17 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签：: 递归 | Allen&#39;s Blog</title>
+    <title>翻转intlist--dummy | Allen&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Allen&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/blog/tags/递归/index.html">
+        <meta name="keywords" content="cs61b" />
+    
+    <meta name="description" content="链表翻转链表翻转问题，重要的是处理好三个节点。即头结点（sentinel节点），当前链表节点A，A的下一个节点。由于我们这个问题翻转的是IntList，没有头结点，所以我们要首先new一个dummy node出来，充当头节点，使问题简化，防止链表丢失。 1234567891011121314151617181920212223242526272829303132333435363738public">
+<meta name="keywords" content="cs61b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻转intlist--dummy">
+<meta property="og:url" content="http://yoursite.com/blog/2018/04/24/翻转intlist--dummy/index.html">
 <meta property="og:site_name" content="Allen&#39;s Blog">
+<meta property="og:description" content="链表翻转链表翻转问题，重要的是处理好三个节点。即头结点（sentinel节点），当前链表节点A，A的下一个节点。由于我们这个问题翻转的是IntList，没有头结点，所以我们要首先new一个dummy node出来，充当头节点，使问题简化，防止链表丢失。 1234567891011121314151617181920212223242526272829303132333435363738public">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-24T14:20:53.842Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen&#39;s Blog">
+<meta name="twitter:title" content="翻转intlist--dummy">
+<meta name="twitter:description" content="链表翻转链表翻转问题，重要的是处理好三个节点。即头结点（sentinel节点），当前链表节点A，A的下一个节点。由于我们这个问题翻转的是IntList，没有头结点，所以我们要首先new一个dummy node出来，充当头节点，使问题简化，防止链表丢失。 1234567891011121314151617181920212223242526272829303132333435363738public">
     
 
     
@@ -92,76 +99,124 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>标签：: <em>递归</em>
+    <a class="page-title-link" href="/blog/categories/Java/">Java</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-翻转intlist--dummy" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/blog/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/blog/2018/04/14/数组的递归算法/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://lh3.googleusercontent.com/wkSiz6_ZpslIycF1wuqHd9PWOn9JMGKt-VEQW_cR2KtPgGmSTJSg72tblK0-jr9VS7FLW1fdRI9kESeh8inK=w1366-h662)" alt="数组的递归算法(选择排序)" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/blog/2018/04/14/数组的递归算法/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/blog/categories/Java/">Java</a>
-            </div>
-            <div class="date"><time datetime="2018-04-14T13:24:03.000Z" itemprop="datePublished">2018-04-14</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/blog/2018/04/14/数组的递归算法/">数组的递归算法(选择排序)</a>
+        翻转intlist--dummy
         </h1>
     
 
-        <p class="article-excerpt">
-            问题：sorts arrays of Strings.  
-example:x = {“he”, “is”, “the”, “agoyatis”, “of”, “conchis”}    -&gt;   x = {“agoyatis”, “conchis”, “he”, “is”, “of”, “the”}
-我们使用选择排序算法解决该问题：
-Selection sorting a list of 
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/blog/2018/04/24/翻转intlist--dummy/" class="article-date">
+            <time datetime="2018-04-24T13:44:51.000Z" itemprop="datePublished">2018-04-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="链表翻转"><a href="#链表翻转" class="headerlink" title="链表翻转"></a>链表翻转</h2><p>链表翻转问题，重要的是处理好三个节点。即头结点（sentinel节点），当前链表节点A，A的下一个节点。由于我们这个问题翻转的是IntList，没有头结点，所以我们要首先new一个dummy node出来，充当头节点，使问题简化，防止链表丢失。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntList</span> </span>&#123;</span><br><span class="line">    <span class="comment">//First element of list.</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> first;</span><br><span class="line">    <span class="comment">//Remaining elements of list.</span></span><br><span class="line">    <span class="keyword">private</span> IntList rest;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//A List with first FIRST0 and rest REST0.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntList</span><span class="params">(<span class="keyword">int</span> first0, IntList rest0)</span> </span>&#123;</span><br><span class="line">        first = first0;</span><br><span class="line">        rest = rest0;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//A List with null rest, and first = 0.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IntList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* <span class="doctag">NOTE:</span> public IntList () &#123; &#125;  would also work. */</span></span><br><span class="line">        <span class="keyword">this</span>(<span class="number">0</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IntList <span class="title">reverse</span><span class="params">(IntList A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (A == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="comment">//设置dummy节点，指向这个IntList，防止丢失IntList</span></span><br><span class="line">        IntList dummy = <span class="keyword">new</span> IntList(<span class="number">0</span>, A);</span><br><span class="line">      <span class="comment">//设置pre节点，不断指向A节点的下一个节点，即即将要进行头插的节点</span></span><br><span class="line">        IntList pre = A.rest;</span><br><span class="line">        <span class="keyword">while</span> (pre != <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="comment">// 让A连接到pre后面的IntList，现在就可以断开pre与后面的连接了</span></span><br><span class="line">          A.rest = pre.rest; </span><br><span class="line">          <span class="comment">// 让pre连接到整条链表</span></span><br><span class="line">          pre.rest = dummy.rest; </span><br><span class="line">          <span class="comment">// 再让dummy连接到pre</span></span><br><span class="line">          dummy.rest = pre;</span><br><span class="line">          <span class="comment">// 头插成功，pre指针继续指向A的下一个节点，继续进行头插，直到pre == null</span></span><br><span class="line">          pre = A.rest;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.rest;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/blog/2018/04/24/翻转intlist--dummy/" data-id="cjgdszg9q000gpoi44dvw0oks" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
+
+    <section id="comments">
     
-        </div>
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
     
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -198,6 +253,29 @@ Selection sorting a list of
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/blog/2018/04/24/实现LinkedListDeque/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            实现LinkedListDeque
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/blog/2018/04/22/Mysql学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Mysql学习笔记</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -385,11 +463,13 @@ Selection sorting a list of
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/blog/2018/04/24/翻转intlist--dummy/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
