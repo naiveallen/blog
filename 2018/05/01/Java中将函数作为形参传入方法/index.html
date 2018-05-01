@@ -3,26 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>this和super的用法 | Allen&#39;s Blog</title>
+    <title>Java中将函数作为形参传入方法 | Allen&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="继承" />
+        <meta name="keywords" content="cs61b" />
     
-    <meta name="description" content="先来谈一下this。this代表当前的对象，在程序易产生二义性的地方，使用this来指明当前对象。例如：在构造器中，如果构造器的形参与类中的成员数据同名，需要用this来指明成员变量名。在构造函数中，使用this(参数)，可以调用其他构造函数（必须为构造函数中的第一条语句）。不可以递归性调用构造函数。 123456789101112class Student&amp;#123;	String name;">
-<meta name="keywords" content="继承">
+    <meta name="description" content="Java中将函数作为形参传入方法中，虽然现在Java 8貌似已经支持这种做法，但长久以来，程序员都是通过接口来实现的。比如说Comparable和Comparator接口。 比如说，我们要求一个数组中所有元素的和。我们可以使用Combine.combine方法，这个方法的参数有两个，分别是一个计算函数和一个数组。我们可以使用接口来调用这个函数。 123public interface ComFun">
+<meta name="keywords" content="cs61b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="this和super的用法">
-<meta property="og:url" content="http://yoursite.com/blog/2018/01/03/this和super的用法/index.html">
+<meta property="og:title" content="Java中将函数作为形参传入方法">
+<meta property="og:url" content="http://yoursite.com/blog/2018/05/01/Java中将函数作为形参传入方法/index.html">
 <meta property="og:site_name" content="Allen&#39;s Blog">
-<meta property="og:description" content="先来谈一下this。this代表当前的对象，在程序易产生二义性的地方，使用this来指明当前对象。例如：在构造器中，如果构造器的形参与类中的成员数据同名，需要用this来指明成员变量名。在构造函数中，使用this(参数)，可以调用其他构造函数（必须为构造函数中的第一条语句）。不可以递归性调用构造函数。 123456789101112class Student&amp;#123;	String name;">
+<meta property="og:description" content="Java中将函数作为形参传入方法中，虽然现在Java 8貌似已经支持这种做法，但长久以来，程序员都是通过接口来实现的。比如说Comparable和Comparator接口。 比如说，我们要求一个数组中所有元素的和。我们可以使用Combine.combine方法，这个方法的参数有两个，分别是一个计算函数和一个数组。我们可以使用接口来调用这个函数。 123public interface ComFun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images.unsplash.com/photo-1497005367839-6e852de72767?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
-<meta property="og:updated_time" content="2018-01-03T04:11:47.267Z">
+<meta property="og:updated_time" content="2018-05-01T10:21:16.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="this和super的用法">
-<meta name="twitter:description" content="先来谈一下this。this代表当前的对象，在程序易产生二义性的地方，使用this来指明当前对象。例如：在构造器中，如果构造器的形参与类中的成员数据同名，需要用this来指明成员变量名。在构造函数中，使用this(参数)，可以调用其他构造函数（必须为构造函数中的第一条语句）。不可以递归性调用构造函数。 123456789101112class Student&amp;#123;	String name;">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1497005367839-6e852de72767?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
+<meta name="twitter:title" content="Java中将函数作为形参传入方法">
+<meta name="twitter:description" content="Java中将函数作为形参传入方法中，虽然现在Java 8貌似已经支持这种做法，但长久以来，程序员都是通过接口来实现的。比如说Comparable和Comparator接口。 比如说，我们要求一个数组中所有元素的和。我们可以使用Combine.combine方法，这个方法的参数有两个，分别是一个计算函数和一个数组。我们可以使用接口来调用这个函数。 123public interface ComFun">
     
 
     
@@ -105,14 +103,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-this和super的用法" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Java中将函数作为形参传入方法" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        this和super的用法
+        Java中将函数作为形参传入方法
         </h1>
     
 
@@ -122,29 +120,35 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/blog/2018/01/03/this和super的用法/" class="article-date">
-            <time datetime="2018-01-03T03:12:47.000Z" itemprop="datePublished">2018-01-03</time>
+        <a href="/blog/2018/05/01/Java中将函数作为形参传入方法/" class="article-date">
+            <time datetime="2018-05-01T09:56:17.000Z" itemprop="datePublished">2018-05-01</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/继承/">继承</a>
+        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://images.unsplash.com/photo-1497005367839-6e852de72767?dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb" alt=""></p>
-<p>先来谈一下this。this代表当前的对象，在程序易产生二义性的地方，使用this来指明当前对象。例如：在构造器中，如果构造器的形参与类中的成员数据同名，需要用this来指明成员变量名。在构造函数中，使用this(参数)，可以调用其他构造函数（必须为构造函数中的第一条语句）。不可以递归性调用构造函数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> id;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>();    <span class="comment">// 通过this()调用下面的无参构造器</span></span><br><span class="line">		<span class="keyword">this</span>.name = name;   <span class="comment">//通过this避免二义性，区分成员变量和形参</span></span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Construct a student."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>super，引用当前对象的直接父类中的成员，用来访问直接父类中被隐藏的父类中成员数据或函数，子类中有相同成员定义时如：super.变量名    super.成员函数名（实参），避免二义性。super(参数)可调用父类中的某一个构造函数。值得注意的是，每个子类构造方法的第一条语句，都是隐含地调用super()，如果父类没有无参构造函数，那么在编译的时候就会报错，此时必须显式地调用父类的构造方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shot</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"........"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Constructed an animal!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Animal</span><span class="params">(<span class="keyword">int</span> age, String name)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shot</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.shot();                 <span class="comment">//调用父类的shot方法</span></span><br><span class="line">		System.out.println(<span class="string">"Meow,Meow......"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//super();    //call constructor from superclass.  It's default.  </span></span><br><span class="line">		<span class="keyword">super</span>(<span class="number">5</span>, <span class="string">"Lily"</span>);</span><br><span class="line">	 	System.out.println(<span class="string">"Constructed a cat!"</span>);</span><br><span class="line">	 	System.out.println(<span class="string">"猫的年龄是"</span> + <span class="keyword">this</span>.age);</span><br><span class="line">	 	System.out.println(<span class="string">"猫的名字是"</span> + <span class="keyword">super</span>.name); <span class="comment">//使用this super效果一样，均为Animal父类对象的成员属性age，name的值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Cat</span><span class="params">(String name, <span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为什么子类构造函数第一条语句默认是super()呢？ </p>
-<p>因为构造器是为了初始化才会有的。什么是初始化？就是说一些准备工作，我有哪些属性、方法，子类继承父类就是要使用父类里的东西（属性、方法）。但是怎么才能知道父类里有什么呢？那就要先把父类初始化一下，然后父类就具有了相应的属性和方法。父类初始化完成了，表示具有一些东西了，这时候，子类才会初始化自己。</p>
-<p>this()和super()不能同时出现在一个构造函数里面，因为this必然会调用其它的构造函数，其它的构造函数必然也会有super语句的存在，所以在同一个构造函数里面有相同的语句，就失去了语句的意义，编译器也不会通过。this()和super()都指的是对象，所以，均不可以在static环境中使用。包括：static变量,static方法，static语句块。</p>
+            <p>Java中将函数作为形参传入方法中，虽然现在Java 8貌似已经支持这种做法，但长久以来，程序员都是通过接口来实现的。比如说Comparable和Comparator接口。</p>
+<p>比如说，我们要求一个数组中所有元素的和。我们可以使用Combine.combine方法，这个方法的参数有两个，分别是一个计算函数和一个数组。我们可以使用接口来调用这个函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComFunc</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">apply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，我们来实现这个Combine.combine方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Combine</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">combine</span><span class="params">(ComFunc f, <span class="keyword">int</span>[] x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (x.length == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> combine(f, x, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 递归调用 helper方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">combine</span><span class="params">(ComFunc f, <span class="keyword">int</span>[] x, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index == x.length - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x[index];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f.apply(x[index], combine(f, x, index + <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，我们来实现计算函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Add</span> <span class="keyword">implements</span> <span class="title">ComFunc</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">apply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用时只需在Combine.combine方法中new一个计算函数的实例，即可使用apply方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = Combine.combine(<span class="keyword">new</span> Add(), <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;);</span><br><span class="line">    System.out.println(res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加入我们要计算一个数组中所有元素的连乘积，只需再实现一个计算函数即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Times</span> <span class="keyword">implements</span> <span class="title">ComFunc</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">apply</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a * b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Combine.combine(<span class="keyword">new</span> Times(), <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>非常方便。</p>
 
         </div>
         <footer class="article-footer">
@@ -152,7 +156,7 @@
 
 
 
-    <a data-url="http://yoursite.com/blog/2018/01/03/this和super的用法/" data-id="cjgniwae40004hwi4aqigtz90" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/blog/2018/05/01/Java中将函数作为形参传入方法/" data-id="cjgniwacf0000hwi48mzgorwp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -265,20 +269,10 @@
         
 <nav id="article-nav">
     
-        <a href="/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">下一篇</strong>
-        <p class="article-nav-title">
-        
-            搭建Shadowsocks以及安装BBR加速
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/blog/2017/12/29/Git+Hexo初体验/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/blog/2018/05/01/关于继承和多态的一道题目/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">Git+Hexo初体验</p>
+        <p class="article-nav-title">关于继承和多态的一道题目</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -471,7 +465,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/blog/2018/01/03/this和super的用法/';
+    var disqus_url = 'http://yoursite.com/blog/2018/05/01/Java中将函数作为形参传入方法/';
     
     (function() {
     var dsq = document.createElement('script');
