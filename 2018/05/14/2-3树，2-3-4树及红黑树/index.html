@@ -3,26 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>搭建Shadowsocks以及安装BBR加速 | Allen&#39;s Blog</title>
+    <title>2-3树，2-3-4树及红黑树 | Allen&#39;s Blog</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Shadowsocks" />
+        <meta name="keywords" content="cs61b" />
     
-    <meta name="description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
-<meta name="keywords" content="Shadowsocks">
+    <meta name="description" content="问题：二叉搜索树有一个潜在的性能问题，即当树变得不再平衡，变得很高时，查找的时间复杂度就不再是O(logN)了，而变成链表的O(N)。当我们插入的数据是有序的数据时，就会出现这种情况。有一个解决办法是，我们可以随机的插入，这样就会很大概率保持O(logN)的树高度，但是我们无法预先知道要插入的数据是什么，也就无法进行随机插入。  我们可以对二叉树进行旋转（Rotation）操作，已调整二叉树的平衡">
+<meta name="keywords" content="cs61b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建Shadowsocks以及安装BBR加速">
-<meta property="og:url" content="http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/index.html">
+<meta property="og:title" content="2-3树，2-3-4树及红黑树">
+<meta property="og:url" content="http://yoursite.com/blog/2018/05/14/2-3树，2-3-4树及红黑树/index.html">
 <meta property="og:site_name" content="Allen&#39;s Blog">
-<meta property="og:description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
+<meta property="og:description" content="问题：二叉搜索树有一个潜在的性能问题，即当树变得不再平衡，变得很高时，查找的时间复杂度就不再是O(logN)了，而变成链表的O(N)。当我们插入的数据是有序的数据时，就会出现这种情况。有一个解决办法是，我们可以随机的插入，这样就会很大概率保持O(logN)的树高度，但是我们无法预先知道要插入的数据是什么，也就无法进行随机插入。  我们可以对二叉树进行旋转（Rotation）操作，已调整二叉树的平衡">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
-<meta property="og:updated_time" content="2018-02-03T09:44:36.405Z">
+<meta property="og:image" content="https://i.loli.net/2018/05/13/5af8024edfe82.jpg">
+<meta property="og:updated_time" content="2018-05-13T11:53:44.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建Shadowsocks以及安装BBR加速">
-<meta name="twitter:description" content="安装Shadowsocks连接上VPS终端后，在终端中依次运行以下命令： 12345wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.shchmod +x shadowsocks.sh./sh">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb">
+<meta name="twitter:title" content="2-3树，2-3-4树及红黑树">
+<meta name="twitter:description" content="问题：二叉搜索树有一个潜在的性能问题，即当树变得不再平衡，变得很高时，查找的时间复杂度就不再是O(logN)了，而变成链表的O(N)。当我们插入的数据是有序的数据时，就会出现这种情况。有一个解决办法是，我们可以随机的插入，这样就会很大概率保持O(logN)的树高度，但是我们无法预先知道要插入的数据是什么，也就无法进行随机插入。  我们可以对二叉树进行旋转（Rotation）操作，已调整二叉树的平衡">
+<meta name="twitter:image" content="https://i.loli.net/2018/05/13/5af8024edfe82.jpg">
     
 
     
@@ -101,18 +101,18 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/blog/categories/随笔/">随笔</a>
+    <a class="page-title-link" href="/blog/categories/Java/">Java</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-搭建Shadowsocks以及安装BBR加速" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-2-3树，2-3-4树及红黑树" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        搭建Shadowsocks以及安装BBR加速
+        2-3树，2-3-4树及红黑树
         </h1>
     
 
@@ -122,29 +122,103 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" class="article-date">
-            <time datetime="2018-02-03T09:33:12.000Z" itemprop="datePublished">2018-02-03</time>
+        <a href="/blog/2018/05/14/2-3树，2-3-4树及红黑树/" class="article-date">
+            <time datetime="2018-05-14T09:03:11.000Z" itemprop="datePublished">2018-05-14</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/blog/tags/Shadowsocks/">Shadowsocks</a>
+        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://images.unsplash.com/photo-1444201716572-c60ec66d0494?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=8a1ebee2b9a226006f213f0c0f9bf7e9&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80&amp;cs=tinysrgb" alt=""></p>
-<h1 id="安装Shadowsocks"><a href="#安装Shadowsocks" class="headerlink" title="安装Shadowsocks"></a>安装Shadowsocks</h1><p>连接上VPS终端后，在终端中依次运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line"></span><br><span class="line">chmod +x shadowsocks.sh</span><br><span class="line"></span><br><span class="line">./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
-<p>接着按照提醒输入你的密码，端口和加密方式，加密方式选择7 - aes-256-cfb</p>
-<h1 id="安装BBR"><a href="#安装BBR" class="headerlink" title="安装BBR"></a>安装BBR</h1><p>在终端运行以下脚本:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
-<p>安装完成后，重启VPS。再次连接，在终端中输入以下命令，如果返回结果包含tcp_bbr，则安装成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+            <h2 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h2><p>二叉搜索树有一个潜在的性能问题，即当树变得不再平衡，变得很高时，查找的时间复杂度就不再是O(logN)了，而变成链表的O(N)。当我们插入的数据是有序的数据时，就会出现这种情况。有一个解决办法是，我们可以随机的插入，这样就会很大概率保持O(logN)的树高度，但是我们无法预先知道要插入的数据是什么，也就无法进行随机插入。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8024edfe82.jpg" alt=""></p>
+<p>我们可以对二叉树进行旋转（<strong>Rotation</strong>）操作，已调整二叉树的平衡性。</p>
+<h2 id="树的旋转（Tree-Rotation）"><a href="#树的旋转（Tree-Rotation）" class="headerlink" title="树的旋转（Tree Rotation）"></a>树的旋转（Tree Rotation）</h2><p>假设我们有一个如下的二叉搜索树：</p>
+<p><img src="https://i.loli.net/2018/05/13/5af805db3260e.jpg" alt=""></p>
+<p><strong>RotateLeft(G): </strong>左旋G节点，G移动至左边，提升P节点。使得P变为G新的父节点。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af806e58f8b4.jpg" alt=""></p>
+<p>左旋后的二叉搜索树语义完全没有任何改变。但是可以看到，旋转后二叉搜索树的高度减少了。</p>
+<p><strong>RotateRight(P):</strong> 右旋P节点，P移动至右边，提升G节点，使得G变为P新的父节点。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af80898a1f2e.jpg" alt=""></p>
+<p>旋转可以平衡任何一个二叉搜索树，获得平衡性的一种方法就是：<em>在每一次插入或删除操作后，旋转该二叉搜索树，使得其维持平衡。</em></p>
+<h2 id="B树，2-3树，2-3-4树"><a href="#B树，2-3树，2-3-4树" class="headerlink" title="B树，2-3树，2-3-4树"></a>B树，2-3树，2-3-4树</h2><p>有许多类型的二叉搜索树：</p>
+<ul>
+<li><strong>二叉搜索树</strong>：需要通过旋转来保持平衡，有许多种旋转策略（AVL, weight-balancing, red-black）</li>
+<li><strong>Treaps</strong></li>
+<li><strong>Splay trees</strong></li>
+<li><strong>2-3树，2-3-4树，B树</strong>：不需要旋转</li>
+</ul>
+<p>对于2-3树的深入研究，提供了一种对于二叉搜索树的旋转策略：红黑树（red-black）</p>
+<h3 id="2-3树的产生"><a href="#2-3树的产生" class="headerlink" title="2-3树的产生"></a>2-3树的产生</h3><p>二叉搜索树不平衡的问题根源在于不断插入新的叶子节点，如果是有序的插入更为糟糕，很容易形成链表结构。那么我们可以想到，如果我们有一棵已经平衡的二叉树，再也<strong>不添加新的叶子节点</strong>，那么这个二叉树就永远平衡了。但如果不添加新的叶子节点，我们怎么处理新的数据呢？</p>
+<p>我们可以把新数据塞到已有的叶子节点中，让一个节点可以装填多个数据。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af80cd4b1655.jpg" alt=""><img src="https://i.loli.net/2018/05/13/5af80d0cdb9b6.jpg" alt=""></p>
+<p>例如上图中，我们插入q r，可以在一个叶子节点中插入，二叉树的高度始终没有改变，始终平衡。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af80db6e18c9.jpg" alt=""></p>
+<p>但是，这样做有一个弊端，就是会让某一个叶子节点无限装填数据，最终查找操作的时间复杂度和链表无异。</p>
+<p>那么很容易想到，我们可以对每一个节点设置一个容量，存储的最大的数据量，比如我们规定3 。当节点的数据量大于3时，我们把其中一个数据给它的父节点。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af80eac28c9b.jpg" alt=""><img src="https://i.loli.net/2018/05/13/5af80ecab3fb8.jpg" alt=""></p>
+<p>这样又会有一个问题，我们把q给父节点，那么在o和q之间的数据，不知道插入在哪里了。比如说p。</p>
+<p>解决办法：我们可以为o、q这个节点新增一个孩子节点，以用来存放大于o小于q的数据</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8105946f70.jpg" alt=""></p>
+<p>那么，问题又来了……如果非叶子节点满了呢？假设我们要再插入t，u</p>
+<p><img src="https://i.loli.net/2018/05/13/5af811ef5ab79.jpg" alt=""></p>
+<p>我们可以再次分裂满的叶子节点：</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8128797504.jpg" alt=""></p>
+<p>假设我们继续插入y，z</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8130ba9457.jpg" alt=""></p>
+<p>o q s u这个节点数据量大于3，那么将其中一个数据交给其父节点。分裂该节点。</p>
+<p>问题又来了……根节点满了呢？</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8141eafb50.jpg" alt=""></p>
+<p>此时，我们分裂根节点，取出一个数据当新的根节点。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8147011673.jpg" alt=""></p>
+<p>由上，分裂树（<strong>Splitting-trees</strong>）拥有完美的平衡性，如果我们分裂根节点，树的高度加1；如果我们分裂叶子节点或者内部的节点，树的高度不改变。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af8151f2d438.jpg" alt=""></p>
+<p>M：每一个节点孩子的最大数量。</p>
+<p>树的高度：在logM(N) 和 log2(N)之间</p>
+<p>分裂树也被叫做<strong>B树</strong>，一个M = 4的B树，也被叫做2-3-4树或者2-4树。M = 3的B树被叫做2-3树。</p>
+<p>当M比较小的时候，如2-3树和2-3-4树不是很实用……当M很大的时候，例如上千，通常用作数据库系统和文件系统。所以，人们通常将M很大的情况的搜索树叫做B树。</p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><blockquote>
+<p><strong>“Beautiful algorithms are, unfortunately, not always the most useful”  -  Knuth</strong></p>
+</blockquote>
+<p>正如Knuth所说，好的算法并不总是实用的。2-3树和2-3-4树的思想非常棒，但是实现起来却有不小的难度。</p>
+<ul>
+<li>二叉搜索树：需要通过旋转来保持平衡，但是旋转策略很难想到。容易实现</li>
+<li>2-3树：不需要旋转，难以实现。</li>
+</ul>
+<p>我们可以将二者相结合。2-3树的思想 + 二叉搜索树的实现 = 红黑树，即构建一棵二叉搜索树使其结构上为一棵2-3树</p>
+<p>那么我们可以将一棵2-3树转换为一棵二叉搜索树。2个孩子的节点无需转换，3个孩子的节点怎么转换呢？</p>
+<p>方法1：创建“胶水”空节点。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af81b9327736.jpg" alt=""></p>
+<p>很明显，浪费了很多空间。</p>
+<p>方法2：创建“胶水”链接。</p>
+<p><img src="https://i.loli.net/2018/05/13/5af82367a225c.jpg" alt=""></p>
+<p>将拥有两个值的节点分割，大值节点指向小值节点。为了方便，将胶水链接设为红色。</p>
+<h5 id="红黑树特点："><a href="#红黑树特点：" class="headerlink" title="红黑树特点："></a>红黑树特点：</h5><ul>
+<li>不会有节点拥有两个红链接</li>
+<li>从根节点到叶子节点的每一条路径，有相同的数量的黑链接</li>
+<li>红链接始终链接左边孩子</li>
+</ul>
+<p><img src="https://i.loli.net/2018/05/13/5af82487be37a.jpg" alt=""></p>
+<p>对于任意一个2-3树（已经平衡），都存在一个对应的红黑树，深度不超过2-3树的两倍。红黑树在插入删除操作后，使用树的旋转来保持2-3树的特性。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><h5 id="2-3树和2-3-4树："><a href="#2-3树和2-3-4树：" class="headerlink" title="2-3树和2-3-4树："></a>2-3树和2-3-4树：</h5><ul>
+<li>拥有完美的平衡性</li>
+<li>树的高度保证了log级</li>
+<li>插入删除操作，时间复杂度均为O(logN)</li>
+<li>很难实现</li>
+</ul>
+<h5 id="红黑树-1"><a href="#红黑树-1" class="headerlink" title="红黑树"></a>红黑树</h5><ul>
+<li>使用颜色标记和树的旋转来模拟2-3树的行为</li>
+<li>树的高度保证了log级</li>
+<li>插入删除操作，时间复杂度均为O(logN)</li>
+<li>较容易实现，可以应用在实际中，如java.util.TreeSet</li>
+</ul>
 
         </div>
         <footer class="article-footer">
@@ -152,7 +226,7 @@
 
 
 
-    <a data-url="http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/" data-id="cjhda6g2r0014tki42g43jdls" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/blog/2018/05/14/2-3树，2-3-4树及红黑树/" data-id="cjhda6fyz000atki4tgg8lf3w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -265,20 +339,20 @@
         
 <nav id="article-nav">
     
-        <a href="/blog/2018/04/10/java引用类型、关键字new及intList实现/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/blog/2018/05/19/BSTMap和HashMap的实现/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">下一篇</strong>
         <p class="article-nav-title">
         
-            Java引用类型、关键字new及intList实现
+            BSTMap和HashMap的实现
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/blog/2018/01/03/this和super的用法/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/blog/2018/05/13/二叉搜索树/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">上一篇</strong>
-        <p class="article-nav-title">this和super的用法</p>
+        <p class="article-nav-title">二叉搜索树</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -471,7 +545,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/blog/2018/02/03/搭建Shadowsocks以及安装BBR加速/';
+    var disqus_url = 'http://yoursite.com/blog/2018/05/14/2-3树，2-3-4树及红黑树/';
     
     (function() {
     var dsq = document.createElement('script');
