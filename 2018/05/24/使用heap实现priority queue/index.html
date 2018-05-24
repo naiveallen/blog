@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>使用heap实现priority queue | Allen&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="cs61b" />
+    
+    <meta name="description" content="priority queue（优先队列）在优先队列中，元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问。 123456789101112/** (Min) Priority Queue: Allowing tracking and removal of the  * smallest item in a priority queue. */public interface MinPQ">
+<meta name="keywords" content="cs61b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用heap实现priority queue">
+<meta property="og:url" content="http://yoursite.com/blog/2018/05/24/使用heap实现priority queue/index.html">
+<meta property="og:site_name" content="Allen&#39;s Blog">
+<meta property="og:description" content="priority queue（优先队列）在优先队列中，元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问。 123456789101112/** (Min) Priority Queue: Allowing tracking and removal of the  * smallest item in a priority queue. */public interface MinPQ">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-24T04:46:34.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用heap实现priority queue">
+<meta name="twitter:description" content="priority queue（优先队列）在优先队列中，元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问。 123456789101112/** (Min) Priority Queue: Allowing tracking and removal of the  * smallest item in a priority queue. */public interface MinPQ">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/blog/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/blog/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/blog/css/style.css">
+
+    <script src="/blog/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/blog/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/blog/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/blog/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">to be simple, to be naive</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/blog/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/Java/">Java</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/blog/categories/随笔/">随笔</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/blog/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://yoursite.com/blog"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/blog/categories/Java/">Java</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-使用heap实现priority queue" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        使用heap实现priority queue
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/blog/2018/05/24/使用heap实现priority queue/" class="article-date">
+            <time datetime="2018-05-24T04:04:36.000Z" itemprop="datePublished">2018-05-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/cs61b/">cs61b</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="priority-queue（优先队列）"><a href="#priority-queue（优先队列）" class="headerlink" title="priority queue（优先队列）"></a>priority queue（优先队列）</h2><p>在优先队列中，元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** (Min) Priority Queue: Allowing tracking and removal of the</span></span><br><span class="line"><span class="comment">  * smallest item in a priority queue. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MinPQ</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">/** Adds the item to the priority queue. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Item x)</span></span>;</span><br><span class="line">	<span class="comment">/** Returns the smallest item in the priority queue. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Item <span class="title">getSmallest</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">/** Removes the smallest item from the priority queue. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Item <span class="title">removeSmallest</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">/** Returns the size of the priority queue. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><p>实现优先队列（priority queue）有很多种方法，可以使用排序的数组来实现，可以使用二叉搜索树来实现，但都不是最优的实现方式。使用二叉搜索树（BST）无法处理相同节点，并且还要不断保持二叉树的平衡。故我们使用堆结构（heap）来实现优先队列。</p>
+<p>二叉堆结构，基本就是二叉树，但是还要满足两个条件：</p>
+<ul>
+<li>满二叉树（ the tree must be <em>complete</em>）</li>
+<li>每一个节点要小于它的左右孩子（every node is smaller than its descendants）</li>
+</ul>
+<p>满二叉树是指，只有叶子层可以不是满的，但叶子必须从左到右依次排列。</p>
+<p>由堆结构特点，用它来实现优先队列是非常自然的。要返回最小的元素，只需返回根节点即可。</p>
+<p>堆结构最基本的两个操作：添加元素，删除元素</p>
+<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><p>为了不破坏堆结构的特性，我们将元素添加至叶子层最左边可以添加的位置。然后不断将元素与它的父节点相比较，如果小于父节点，则互换，直到它比父节点大或者它成为了根节点。这一过程称作<em>bubbling up</em>或<em>swimming</em>。</p>
+<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>我们要删除根节点，不能直接删除，而是要找到根节点的替换节点。所以我们先将根节点与叶子层最右边的叶子互换，删掉最右边的叶子。然后不断将新的根节点与它的左右孩子比较，如果小于左右孩子中较小的那一个，则将节点与较小的孩子节点互换，直到它比左右孩子节点都大。这一过程称作<em>sinking</em>。</p>
+<h3 id="heap的表示"><a href="#heap的表示" class="headerlink" title="heap的表示"></a>heap的表示</h3><p>我们可以使用Linked Node来表示heap，也可以采用Array来表示。由于heap是满二叉树，所以这里我们采用Array来表示heap，比较简单。</p>
+<p>将 index = 0 的位置置空，将根节点放在 index = 1 的位置上，然后依次放入1的左右孩子2，3 。再依次放入2，3的左右孩子……这样，在访问某一个索引为k的节点的孩子和父节点时，就有一个简单的数量关系：</p>
+<ul>
+<li><strong>leftChild(k) = k*2</strong></li>
+<li><strong>rightChild(k) = k*2 + 1</strong></li>
+<li><strong>parent(k) = k/2</strong></li>
+</ul>
+<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><p>heap的添加操作<strong>add</strong>： O（logN）</p>
+<p>heap的删除操作<strong>removeSmallest</strong>： O（logN）</p>
+<p>heap的查找操作<strong>getSmallest</strong>： O（1）</p>
+<h2 id="使用heap实现priority-queue"><a href="#使用heap实现priority-queue" class="headerlink" title="使用heap实现priority queue"></a>使用heap实现priority queue</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A Generic heap class. Unlike Java's priority queue, this heap doesn't just</span></span><br><span class="line"><span class="comment"> * store Comparable objects. Instead, it can store any type of object</span></span><br><span class="line"><span class="comment"> * (represented by type T), along with a priority value. Why do it this way? It</span></span><br><span class="line"><span class="comment"> * will be useful later on in the class...</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayHeap</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">ExtrinsicPQ</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node[] contents;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayHeap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        contents = <span class="keyword">new</span> ArrayHeap.Node[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Add a dummy item at the front of the ArrayHeap so that the getLeft,</span></span><br><span class="line"><span class="comment">         * getRight, and parent methods are nicer. */</span></span><br><span class="line">        contents[<span class="number">0</span>] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* Even though there is an empty spot at the front, we still consider</span></span><br><span class="line"><span class="comment">         * the size to be 0 since nothing has been inserted yet. */</span></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the index of the node to the left of the node at i.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">leftIndex</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> * i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the index of the node to the right of the node at i.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">rightIndex</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> * i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the index of the node that is the parent of the node at i.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parentIndex</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets the node at the ith index, or returns null if the index is out of</span></span><br><span class="line"><span class="comment">     * bounds.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">getNode</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!inBounds(index)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> contents[index];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns true if the index corresponds to a valid item. For example, if</span></span><br><span class="line"><span class="comment">     * we have 5 items, then the valid indices are 1, 2, 3, 4, 5. Index 0 is</span></span><br><span class="line"><span class="comment">     * invalid because we leave the 0th entry blank.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">inBounds</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((index &gt; size) || (index &lt; <span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Swap the nodes at the two indices.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">        Node node1 = getNode(index1);</span><br><span class="line">        Node node2 = getNode(index2);</span><br><span class="line">        contents[index1] = node2;</span><br><span class="line">        contents[index2] = node1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the index of the node with smaller priority. Precondition: not</span></span><br><span class="line"><span class="comment">     * both nodes are null.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> index1, <span class="keyword">int</span> index2)</span> </span>&#123;</span><br><span class="line">        Node node1 = getNode(index1);</span><br><span class="line">        Node node2 = getNode(index2);</span><br><span class="line">        <span class="keyword">if</span> (node1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> index2;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> index1;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node1.myPriority &lt; node2.myPriority) &#123;</span><br><span class="line">            <span class="keyword">return</span> index1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> index2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Bubbles up the node currently at the given index.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swim</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Throws an exception if index is invalid. DON'T CHANGE THIS LINE.</span></span><br><span class="line">        validateSinkSwimArg(index);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(min(index, parentIndex(index)) == index &amp;&amp; index != <span class="number">1</span>) &#123;</span><br><span class="line">            swap(index, parentIndex(index));</span><br><span class="line">            swim(parentIndex(index));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Bubbles down the node currently at the given index.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Throws an exception if index is invalid. DON'T CHANGE THIS LINE.</span></span><br><span class="line">        validateSinkSwimArg(index);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftrightmin = min(leftIndex(index), rightIndex(index));</span><br><span class="line">        <span class="keyword">if</span>(min(index, leftrightmin) == leftrightmin) &#123;</span><br><span class="line">            swap(index, leftrightmin);</span><br><span class="line">            sink(leftrightmin);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Inserts an item with the given priority value. This is enqueue, or offer.</span></span><br><span class="line"><span class="comment">     * To implement this method, add it to the end of the ArrayList, then swim it.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(T item, <span class="keyword">double</span> priority)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* If the array is totally full, resize. */</span></span><br><span class="line">        <span class="keyword">if</span> (size + <span class="number">1</span> == contents.length) &#123;</span><br><span class="line">            resize(contents.length * <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        contents[size + <span class="number">1</span>] = <span class="keyword">new</span> Node(item, priority);</span><br><span class="line">        <span class="keyword">int</span> index = size + <span class="number">1</span>;</span><br><span class="line">        size++;</span><br><span class="line">        swim(index);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the Node with the smallest priority value, but does not remove it</span></span><br><span class="line"><span class="comment">     * from the heap. To implement this, return the item in the 1st position of the ArrayList.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> contents[<span class="number">1</span>].myItem;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the Node with the smallest priority value, and removes it from</span></span><br><span class="line"><span class="comment">     * the heap. This is dequeue, or poll. To implement this, swap the last</span></span><br><span class="line"><span class="comment">     * item from the heap into the root position, then sink the root. This is</span></span><br><span class="line"><span class="comment">     * equivalent to firing the president of the company, taking the last</span></span><br><span class="line"><span class="comment">     * person on the list on payroll, making them president, and then demoting</span></span><br><span class="line"><span class="comment">     * them repeatedly. Make sure to avoid loitering by nulling out the dead</span></span><br><span class="line"><span class="comment">     * item.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">removeMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        T retnode = peek();</span><br><span class="line">        swap(<span class="number">1</span>, size);</span><br><span class="line">        contents[size] = <span class="keyword">null</span>;</span><br><span class="line">        size--;</span><br><span class="line">        sink(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> retnode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the number of items in the PQ. This is one less than the size</span></span><br><span class="line"><span class="comment">     * of the backing ArrayList because we leave the 0th element empty. This</span></span><br><span class="line"><span class="comment">     * method has been implemented for you.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Change the node in this heap with the given item to have the given</span></span><br><span class="line"><span class="comment">     * priority. You can assume the heap will not have two nodes with the same</span></span><br><span class="line"><span class="comment">     * item. Check item equality with .equals(), not ==. This is a challenging</span></span><br><span class="line"><span class="comment">     * bonus problem, but shouldn't be too hard if you really understand heaps</span></span><br><span class="line"><span class="comment">     * and think about the algorithm before you start to code.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changePriority</span><span class="params">(T item, <span class="keyword">double</span> priority)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(getNode(i).myItem.equals(item)) &#123;</span><br><span class="line">                <span class="keyword">if</span>(getNode(i).myPriority &lt; priority) &#123;</span><br><span class="line">                    getNode(i).myPriority = priority;</span><br><span class="line">                    sink(i);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    getNode(i).myPriority = priority;</span><br><span class="line">                    swim(i);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Prints out the heap sideways. Provided for you.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toStringHelper(<span class="number">1</span>, <span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Recursive helper method for toString. */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">toStringHelper</span><span class="params">(<span class="keyword">int</span> index, String soFar)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (getNode(index) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            String toReturn = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">int</span> rightChild = rightIndex(index);</span><br><span class="line">            toReturn += toStringHelper(rightChild, <span class="string">"        "</span> + soFar);</span><br><span class="line">            <span class="keyword">if</span> (getNode(rightChild) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                toReturn += soFar + <span class="string">"    /"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            toReturn += <span class="string">"\n"</span> + soFar + getNode(index) + <span class="string">"\n"</span>;</span><br><span class="line">            <span class="keyword">int</span> leftChild = leftIndex(index);</span><br><span class="line">            <span class="keyword">if</span> (getNode(leftChild) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                toReturn += soFar + <span class="string">"    \\"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            toReturn += toStringHelper(leftChild, <span class="string">"        "</span> + soFar);</span><br><span class="line">            <span class="keyword">return</span> toReturn;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Throws an exception if the index is invalid for sinking or swimming.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">validateSinkSwimArg</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot sink or swim nodes with index 0 or less"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (index &gt; size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot sink or swim nodes with index greater than current size."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (contents[index] == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot sink or swim a null node."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> T myItem;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">double</span> myPriority;</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Node</span><span class="params">(T item, <span class="keyword">double</span> priority)</span> </span>&#123;</span><br><span class="line">            myItem = item;</span><br><span class="line">            myPriority = priority;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> T <span class="title">item</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> myItem;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">priority</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> myPriority;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> myItem.toString() + <span class="string">", "</span> + myPriority;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** Helper function to resize the backing array when necessary. */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">resize</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        Node[] temp = <span class="keyword">new</span> ArrayHeap.Node[capacity];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.contents.length; i++) &#123;</span><br><span class="line">            temp[i] = <span class="keyword">this</span>.contents[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.contents = temp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/blog/2018/05/24/使用heap实现priority queue/" data-id="cjhk23ppb000h4wi4jrc74pbv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/blog/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/naiveallen" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="https://weibo.com/u/2405693853" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/blog/2018/05/19/BSTMap和HashMap的实现/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">BSTMap和HashMap的实现</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/05/24/使用heap实现priority queue/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/05/24/使用heap实现priority queue/" class="title">使用heap实现priority queue</a></p>
+                            <p class="item-date"><time datetime="2018-05-24T04:04:36.000Z" itemprop="datePublished">2018-05-24</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/05/19/BSTMap和HashMap的实现/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/05/19/BSTMap和HashMap的实现/" class="title">BSTMap和HashMap的实现</a></p>
+                            <p class="item-date"><time datetime="2018-05-19T10:33:26.000Z" itemprop="datePublished">2018-05-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/05/14/2-3树，2-3-4树及红黑树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2018/05/13/5af8024edfe82.jpg)" alt="2-3树，2-3-4树及红黑树" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/05/14/2-3树，2-3-4树及红黑树/" class="title">2-3树，2-3-4树及红黑树</a></p>
+                            <p class="item-date"><time datetime="2018-05-14T09:03:11.000Z" itemprop="datePublished">2018-05-14</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/05/13/二叉搜索树/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://i.loli.net/2018/05/13/5af7a10374d7e.jpg)" alt="二叉搜索树" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/05/13/二叉搜索树/" class="title">二叉搜索树</a></p>
+                            <p class="item-date"><time datetime="2018-05-13T02:45:29.000Z" itemprop="datePublished">2018-05-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/blog/2018/05/12/Map的数组实现及泛型方法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/blog/categories/Java/">Java</a></p>
+                            <p class="item-title"><a href="/blog/2018/05/12/Map的数组实现及泛型方法/" class="title">Map的数组实现及泛型方法</a></p>
+                            <p class="item-date"><time datetime="2018-05-12T09:57:07.000Z" itemprop="datePublished">2018-05-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/Java/">Java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/05/">五月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/blog/tags/Hash/" style="font-size: 10px;">Hash</a> <a href="/blog/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/blog/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/blog/tags/cs61b/" style="font-size: 20px;">cs61b</a> <a href="/blog/tags/github/" style="font-size: 10px;">github</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/加密/" style="font-size: 10px;">加密</a> <a href="/blog/tags/多态/" style="font-size: 10px;">多态</a> <a href="/blog/tags/继承/" style="font-size: 10px;">继承</a> <a href="/blog/tags/递归/" style="font-size: 10px;">递归</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/blog/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Allen Yuan</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/blog/2018/05/24/使用heap实现priority queue/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/blog/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/blog/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/blog/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/blog/js/main.js"></script>
+
+    </div>
+</body>
+</html>
